@@ -1,6 +1,6 @@
 {
   "name": "@xofttion-enterprise/utils",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "author": "Daniel Andrés Castillo Pedroza",
   "license": "MIT",
   "main": "dist/index.js",
@@ -13,16 +13,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "build": "tsc -p tsconfig.json",
     "size": "size-limit",
     "analyze": "size-limit --why"
-  },
-  "peerDependencies": {
-    "rxjs": "~7.5.0"
   },
   "husky": {
     "hooks": {
@@ -40,11 +33,13 @@
       "limit": "10 KB"
     }
   ],
+  "peerDependencies": {
+    "rxjs": "~7.5.0"
+  },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.0.0",
     "husky": "^8.0.1",
     "size-limit": "^8.0.0",
-    "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   }

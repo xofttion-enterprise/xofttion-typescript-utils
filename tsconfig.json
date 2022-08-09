@@ -2,12 +2,13 @@
   "include": ["src", "types"],
   "compilerOptions": {
     "module": "es2020",
-    "target": "es2015",
-    "lib": ["dom", "esnext"],
+    "target": "es2020",
+    "lib": ["dom", "es2020"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
     "rootDir": "./src",
+    "outDir": "./dist",
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -17,7 +18,6 @@
     "jsx": "react",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true
+    "forceConsistentCasingInFileNames": true
   }
 }
