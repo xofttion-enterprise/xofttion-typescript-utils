@@ -4,9 +4,9 @@ import { IsDefined } from './control-operator';
 export abstract class Optional<T> {
   protected constructor() {}
 
-  abstract isPresent(): boolean;
+  public abstract isPresent(): boolean;
 
-  abstract get(): T;
+  public abstract get(): T;
 
   public static build<T>(value?: T | null): Optional<T> {
     return IsDefined(value) ? this.of(value as T) : this.empty();
@@ -26,25 +26,25 @@ export abstract class Optional<T> {
 }
 
 class PresentOptional<T> extends Optional<T> {
-  constructor(private _value: T) {
+  constructor(private value: T) {
     super();
   }
 
-  isPresent(): boolean {
+  public isPresent(): boolean {
     return true;
   }
 
-  get(): T {
-    return this._value;
+  public get(): T {
+    return this.value;
   }
 }
 
 class EmptyOptional<T> extends Optional<T> {
-  isPresent(): boolean {
+  public isPresent(): boolean {
     return false;
   }
 
-  get(): T {
+  public get(): T {
     throw new Error('The optional is not present.');
   }
 }
