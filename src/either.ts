@@ -51,7 +51,7 @@ const MakeLeft = <L>(value: L): Left<L> => ({ left: value });
 const MakeRight = <R>(value: R): Right<R> => ({ right: value });
 
 export class Either<L, R> {
-  private constructor(private _value: EitherValue<L, R>) {}
+  private constructor(private value: EitherValue<L, R>) {}
 
   public fold<V>(resolver: EitherResolver<L, R, V>): Optional<V> {
     return Optional.build(this._unwrap(resolver));
@@ -62,12 +62,12 @@ export class Either<L, R> {
   }
 
   private _unwrap<V>(resolver: EitherResolver<L, R, V>): V | undefined {
-    if (IsRight(this._value) && resolver.right) {
-      return resolver.right(UnwrapEither(this._value));
+    if (IsRight(this.value) && resolver.right) {
+      return resolver.right(UnwrapEither(this.value));
     }
 
-    if (IsLeft(this._value) && resolver.left) {
-      return resolver.left(UnwrapEither(this._value));
+    if (IsLeft(this.value) && resolver.left) {
+      return resolver.left(UnwrapEither(this.value));
     }
 
     return undefined;

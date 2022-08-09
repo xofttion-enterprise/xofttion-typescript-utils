@@ -13,6 +13,10 @@ export function ParseBoolean(value: any): boolean {
     return false;
   }
 
+  if (value === false) {
+    return false;
+  }
+
   if (falsyValues.includes(value)) {
     return false;
   }
