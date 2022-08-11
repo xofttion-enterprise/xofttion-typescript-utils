@@ -9,17 +9,5 @@ export function IsUndefined(object: any): boolean {
 }
 
 export function ParseBoolean(value: any): boolean {
-  if (IsUndefined(value)) {
-    return false;
-  }
-
-  if (value === false) {
-    return false;
-  }
-
-  if (falsyValues.includes(value)) {
-    return false;
-  }
-
-  return true;
+  return !(IsUndefined(value) || value === false || falsyValues.includes(value));
 }
