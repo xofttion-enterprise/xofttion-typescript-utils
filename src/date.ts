@@ -79,7 +79,7 @@ const formatters: DateFormat = {
   }
 };
 
-export function getWeight(date: Date): number {
+export function getDateWeight(date: Date): number {
   return date.getFullYear() * 365 + (date.getMonth() + 1) * 30 + date.getDate();
 }
 
