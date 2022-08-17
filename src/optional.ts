@@ -6,6 +6,8 @@ export abstract class Optional<T> {
 
   public abstract isPresent(): boolean;
 
+  public abstract isEmpty(): boolean;
+
   public abstract get(): T;
 
   public static build<T>(value?: T | null): Optional<T> {
@@ -34,6 +36,10 @@ class PresentOptional<T> extends Optional<T> {
     return true;
   }
 
+  public isEmpty(): boolean {
+    return false;
+  }
+
   public get(): T {
     return this.value;
   }
@@ -42,6 +48,10 @@ class PresentOptional<T> extends Optional<T> {
 class EmptyOptional<T> extends Optional<T> {
   public isPresent(): boolean {
     return false;
+  }
+
+  public isEmpty(): boolean {
+    return true;
   }
 
   public get(): T {
