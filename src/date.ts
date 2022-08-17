@@ -57,7 +57,7 @@ const formatters: DateFormat = {
     return MONTHS_NAME[date.getDay()];
   },
   mx: (date: Date): string => {
-    return MONTHS_NAME_MIN[date.getDay()];
+    return MONTHS_NAME_MIN[date.getMonth()];
   },
   aa: (date: Date): string => {
     return completFormat(date.getFullYear(), 4);
@@ -103,6 +103,52 @@ export function getDateFormat(date: Date, pattern: string): string {
   return format;
 }
 
+export function DateFactory(year?: number, month?: number, day?: number): Date {
+  const date = new Date();
+
+  if (year) {
+    verifyDayYear(date, year);
+  }
+
+  if (month) {
+    verifyDayMonth(date, month);
+  }
+
+  if (day) {
+    date.setDate(day);
+  }
+
+  return date;
+}
+
+export function changeYear(oldDate: Date, year: number): Date {
+  const date = new Date(oldDate.getTime());
+
+  verifyDayYear(date, year);
+
+  date.setFullYear(year);
+
+  return date;
+}
+
+export function changeMonth(oldDate: Date, month: number): Date {
+  const date = new Date(oldDate.getTime());
+
+  verifyDayMonth(date, month);
+
+  date.setMonth(month);
+
+  return date;
+}
+
+export function changeDay(oldDate: Date, day: number): Date {
+  const date = new Date(oldDate.getTime());
+
+  date.setDate(day);
+
+  return date;
+}
+
 function completFormat(value: number, size: number): string {
   return value.toString().padStart(size, '0');
 }
@@ -111,4 +157,24 @@ function getHourFormat(date: Date): number {
   const hour = date.getHours();
 
   return hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+}
+
+function verifyDayYear(date: Date, year: number): void {
+  const days = getDaysMonth(year, date.getMonth());
+
+  if (days < date.getDate()) {
+    date.setDate(days);
+  }
+
+  date.setFullYear(year); // Establecer el año
+}
+
+function verifyDayMonth(date: Date, month: number): void {
+  const days = getDaysMonth(date.getFullYear(), month);
+
+  if (days < date.getDate()) {
+    date.setDate(days);
+  }
+
+  date.setMonth(month); // Establecer el mes
 }
