@@ -32,19 +32,19 @@ export class Store<T> {
     this.state = new State(value);
   }
 
-  public reducer(callReducer: (_: T) => T): void {
+  protected reducer(callReducer: (_: T) => T): void {
     this.state.reducer(callReducer);
   }
 
-  public select<V>(callSelect: (_: T) => V): V {
+  protected select<V>(callSelect: (_: T) => V): V {
     return this.state.select(callSelect);
   }
 
-  public observer<V>(callObserver: (_: T) => V): Observable<V> {
+  protected observer<V>(callObserver: (_: T) => V): Observable<V> {
     return this.state.observable().pipe(map((state) => callObserver(state)));
   }
 
-  public reset(): void {
+  protected reset(): void {
     this.state.reset();
   }
 }
