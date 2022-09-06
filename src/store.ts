@@ -5,23 +5,27 @@ class State<T> {
   private subject: BehaviorSubject<T>;
 
   constructor(private _initialValue: T) {
-    this.subject = new BehaviorSubject(this._initialValue);
+    this.subject = new BehaviorSubject(Object.freeze(this._initialValue));
   }
 
-  public reducer(callReducer: (_: T) => T): void {
-    this.subject.next(callReducer(this.subject.value));
+  public current(): T {
+    return this.subject.value;
   }
 
-  public select<V>(callSelect: (_: T) => V): V {
-    return callSelect({ ...this.subject.value });
+  public reduce(reducer: (_: T) => T): void {
+    this.subject.next(Object.freeze(reducer(this.subject.value)));
   }
 
-  public observable(): Observable<T> {
+  public select<V>(selector: (_: T) => V): V {
+    return selector(this.subject.value);
+  }
+
+  public observe(): Observable<T> {
     return this.subject.asObservable();
   }
 
   public reset(): void {
-    this.reducer(() => this._initialValue);
+    this.reduce(() => this._initialValue);
   }
 }
 
@@ -32,16 +36,20 @@ export class Store<T> {
     this.state = new State(value);
   }
 
-  protected reducer(callReducer: (_: T) => T): void {
-    this.state.reducer(callReducer);
+  public current(): T {
+    return this.state.current();
   }
 
-  protected select<V>(callSelect: (_: T) => V): V {
-    return this.state.select(callSelect);
+  protected reduce(reducer: (_: T) => T): void {
+    this.state.reduce(reducer);
   }
 
-  protected observer<V>(callObserver: (_: T) => V): Observable<V> {
-    return this.state.observable().pipe(map((state) => callObserver(state)));
+  protected select<V>(selector: (_: T) => V): V {
+    return this.state.select(selector);
+  }
+
+  protected observe<V>(observer: (_: T) => V): Observable<V> {
+    return this.state.observe().pipe(map((state) => observer(state)));
   }
 
   protected reset(): void {
