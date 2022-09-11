@@ -73,11 +73,11 @@ export class Either<L, R> {
     return undefined;
   }
 
-  public static left<L>(value: L): Either<L, undefined> {
+  public static left<L>(value: L): Either<L, unknown> {
     return new Either(MakeLeft<L>(value));
   }
 
-  public static right<R>(value: R): Either<undefined, R> {
+  public static right<R>(value: R): Either<unknown, R> {
     return new Either(MakeRight<R>(value));
   }
 }
