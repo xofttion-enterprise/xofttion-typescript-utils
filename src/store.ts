@@ -52,7 +52,7 @@ export class Store<T> {
     return this.state.observe().pipe(map((state) => observer(state)));
   }
 
-  protected reset(): void {
+  public reset(): void {
     this.state.reset();
   }
 }
