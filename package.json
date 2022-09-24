@@ -1,6 +1,6 @@
 {
   "name": "@xofttion-enterprise/utils",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Daniel Andrés Castillo Pedroza",
   "license": "MIT",
   "main": "dist/index.js",
