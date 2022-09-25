@@ -103,7 +103,7 @@ export function getDateFormat(date: Date, pattern: string): string {
   return format;
 }
 
-export function DateFactory(year?: number, month?: number, day?: number): Date {
+export function dateFactory(year?: number, month?: number, day?: number): Date {
   const date = new Date();
 
   if (year) {
