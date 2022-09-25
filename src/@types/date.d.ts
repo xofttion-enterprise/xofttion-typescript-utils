@@ -22,6 +22,10 @@ declare global {
 
     merge(date: Date): Date;
 
+    getDifference(date: Date): number;
+
+    getDifferenceForHumans(date: Date): string;
+
     normalizeTimeMin(): Date;
 
     normalizeTimeMax(): Date;

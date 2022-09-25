@@ -1,4 +1,5 @@
 import { getDateFormat, getDateWeight, isLeapYear } from '../date';
+import { getFormatForHumans } from '../date-elapsed';
 
 Date.prototype.isEquals = function (date: Date): boolean {
   return this.getTime() === date.getTime();
@@ -45,6 +46,14 @@ Date.prototype.merge = function (date: Date): Date {
   this.setSeconds(date.getSeconds());
 
   return this;
+};
+
+Date.prototype.getDifference = function (date = new Date()): number {
+  return this.getTime() - date.getTime();
+};
+
+Date.prototype.getDifferenceForHumans = function (date = new Date()): string {
+  return getFormatForHumans(this.getDifference(date));
 };
 
 Date.prototype.normalizeTimeMin = function (): Date {
