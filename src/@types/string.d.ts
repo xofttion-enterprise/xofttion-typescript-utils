@@ -8,6 +8,6 @@ declare global {
 
     last(): string;
 
-    like(pattern: string, force: boolean): boolean;
+    like(pattern: string, force = false): boolean;
   }
 }

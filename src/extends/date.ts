@@ -1,27 +1,27 @@
 import { getDateFormat, getDateWeight, isLeapYear } from '../date';
 import { getFormatForHumans } from '../date-elapsed';
 
-Date.prototype.isEquals = function (date: Date): boolean {
+Date.prototype.isEquals = function (date = new Date()): boolean {
   return this.getTime() === date.getTime();
 };
 
-Date.prototype.isEqualsWeight = function (date: Date): boolean {
+Date.prototype.isEqualsWeight = function (date = new Date()): boolean {
   return this.getWeight() === date.getWeight();
 };
 
-Date.prototype.isBefore = function (date: Date): boolean {
+Date.prototype.isBefore = function (date = new Date()): boolean {
   return this.getTime() > date.getTime();
 };
 
-Date.prototype.isBeforeOrEquals = function (date: Date): boolean {
+Date.prototype.isBeforeOrEquals = function (date = new Date()): boolean {
   return this.getTime() >= date.getTime();
 };
 
-Date.prototype.isAfter = function (date: Date): boolean {
+Date.prototype.isAfter = function (date = new Date()): boolean {
   return this.getTime() < date.getTime();
 };
 
-Date.prototype.isAfterOrEquals = function (date: Date): boolean {
+Date.prototype.isAfterOrEquals = function (date = new Date()): boolean {
   return this.getTime() <= date.getTime();
 };
 
@@ -37,7 +37,7 @@ Date.prototype.getWeight = function (): number {
   return getDateWeight(this);
 };
 
-Date.prototype.merge = function (date: Date): Date {
+Date.prototype.merge = function (date = new Date()): Date {
   this.setFullYear(date.getFullYear());
   this.setMonth(date.getMonth());
   this.setDate(date.getDate());
