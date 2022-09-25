@@ -1,4 +1,4 @@
-export const monthsName = [
+export const MONTHS_NAME = [
   'Enero',
   'Febrero',
   'Marzo',
@@ -13,7 +13,7 @@ export const monthsName = [
   'Diciembre'
 ];
 
-export const monthsNameMin = [
+export const MONTHS_NAME_MIN = [
   'Ene',
   'Feb',
   'Mar',
@@ -28,11 +28,11 @@ export const monthsNameMin = [
   'Dic'
 ];
 
-export const monthsDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+export const MONTHS_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-export const daysName = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+export const DAYS_NAME = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
-export const daysNameMin = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'];
+export const DAYS_NAME_MIN = ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'];
 
 type FnFormatDate = (date: Date) => string;
 
@@ -45,19 +45,19 @@ const formatters: DateFormat = {
     return completFormat(date.getDate(), 2);
   },
   dw: (date: Date): string => {
-    return daysName[date.getDay()];
+    return DAYS_NAME[date.getDay()];
   },
   dx: (date: Date): string => {
-    return daysNameMin[date.getDay()];
+    return DAYS_NAME_MIN[date.getDay()];
   },
   mm: (date: Date): string => {
     return completFormat(date.getMonth() + 1, 2);
   },
   mn: (date: Date): string => {
-    return monthsName[date.getDay()];
+    return MONTHS_NAME[date.getDay()];
   },
   mx: (date: Date): string => {
-    return monthsNameMin[date.getMonth()];
+    return MONTHS_NAME_MIN[date.getMonth()];
   },
   aa: (date: Date): string => {
     return completFormat(date.getFullYear(), 4);
@@ -84,7 +84,7 @@ export function getDateWeight(date: Date): number {
 }
 
 export function getDaysMonth(year: number, month: number): number {
-  return month === 1 && isLeapYear(year) ? 29 : monthsDays[month];
+  return month === 1 && isLeapYear(year) ? 29 : MONTHS_DAYS[month];
 }
 
 export function isLeapYear(year: number): boolean {
