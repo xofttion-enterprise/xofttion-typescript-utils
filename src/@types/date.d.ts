@@ -2,29 +2,29 @@ export {};
 
 declare global {
   interface Date {
-    isEquals(date = new Date()): boolean;
+    isEquals(date?: Date): boolean;
 
-    isEqualsWeight(date = new Date()): boolean;
+    isEqualsWeight(date?: Date): boolean;
 
-    isBefore(date = new Date()): boolean;
+    isBefore(date?: Date): boolean;
 
-    isBeforeOrEquals(date = new Date()): boolean;
+    isBeforeOrEquals(date?: Date): boolean;
 
-    isAfter(date = new Date()): boolean;
+    isAfter(date?: Date): boolean;
 
     isAfterOrEquals(date: Date): boolean;
 
     isLeapYear(): boolean;
 
-    getFormat(pattern = 'aa-mm-dd'): string;
+    getFormat(pattern?: string): string;
 
     getWeight(): number;
 
-    merge(date = new Date()): Date;
+    merge(date?: Date): Date;
 
-    getDifference(date = new Date()): number;
+    getDifference(date?: Date): number;
 
-    getDifferenceForHumans(date = new Date()): string;
+    getDifferenceForHumans(date?: Date): string;
 
     normalizeTimeMin(): Date;
 
