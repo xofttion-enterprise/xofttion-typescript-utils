@@ -4,9 +4,9 @@ declare global {
   interface String {
     empty: boolean;
 
-    first(): string | null;
+    first(): string;
 
-    last(): string | null;
+    last(): string;
 
     like(pattern: string, force: boolean): boolean;
   }
