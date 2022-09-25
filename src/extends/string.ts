@@ -8,12 +8,12 @@ Object.defineProperty(String.prototype, 'empty', {
   configurable: true
 });
 
-String.prototype.first = function (): string | null {
-  return this.empty ? null : this[0];
+String.prototype.first = function (): string {
+  return this.empty ? '' : this.charAt(0);
 };
 
-String.prototype.last = function (): string | null {
-  return this.empty ? null : this[this.length - 1];
+String.prototype.last = function (): string {
+  return this.empty ? '' : this.charAt(this.length - 1);
 };
 
 String.prototype.like = function (pattern: string, force = false): boolean {

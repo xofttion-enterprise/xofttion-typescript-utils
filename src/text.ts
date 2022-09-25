@@ -30,3 +30,16 @@ export function normalize(value: string): string {
 
   return result;
 }
+
+export function getInitials(value: string, size = 2): string {
+  const valueSplit = value.split(' ');
+
+  if (valueSplit.length === 1) {
+    return value.slice(0, size);
+  }
+
+  const firstValue = valueSplit.first() as string;
+  const lastValue = valueSplit.last() as string;
+
+  return `${firstValue.first()}${lastValue.first()}`.toUpperCase();
+}
