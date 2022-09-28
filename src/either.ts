@@ -1,4 +1,4 @@
-import { IsDefined } from './control-operator';
+import { isDefined } from './control-operator';
 import { Optional } from './optional';
 
 type Left<L> = {
@@ -20,35 +20,35 @@ interface EitherResolver<L, R, V> {
   right?: (_: R) => V | undefined;
 }
 
-const UnwrapEither: UnwrapEitherValue = <L, R>(value: EitherValue<L, R>) => {
+const unwrapEither: UnwrapEitherValue = <L, R>(value: EitherValue<L, R>) => {
   const { left, right } = value;
 
-  if (IsDefined(right) && IsDefined(left)) {
+  if (isDefined(right) && isDefined(left)) {
     throw new Error('Received both left and right values at runtime');
   }
 
-  if (IsDefined(left)) {
+  if (isDefined(left)) {
     return left as NonNullable<L>;
   }
 
-  if (IsDefined(right)) {
+  if (isDefined(right)) {
     return right as NonNullable<R>;
   }
 
   throw new Error('Received no left or right values at runtime when opening Either');
 };
 
-const IsLeft = <L, R>(value: EitherValue<L, R>): value is Left<L> => {
-  return IsDefined(value.left);
+const isLeft = <L, R>(value: EitherValue<L, R>): value is Left<L> => {
+  return isDefined(value.left);
 };
 
-const IsRight = <L, R>(value: EitherValue<L, R>): value is Right<R> => {
-  return IsDefined(value.right);
+const isRight = <L, R>(value: EitherValue<L, R>): value is Right<R> => {
+  return isDefined(value.right);
 };
 
-const MakeLeft = <L>(value: L): Left<L> => ({ left: value });
+const makeLeft = <L>(value: L): Left<L> => ({ left: value });
 
-const MakeRight = <R>(value: R): Right<R> => ({ right: value });
+const makeRight = <R>(value: R): Right<R> => ({ right: value });
 
 export class Either<L, R> {
   private constructor(private value: EitherValue<L, R>) {}
@@ -62,22 +62,22 @@ export class Either<L, R> {
   }
 
   private _unwrap<V>(resolver: EitherResolver<L, R, V>): V | undefined {
-    if (IsRight(this.value) && resolver.right) {
-      return resolver.right(UnwrapEither(this.value));
+    if (isRight(this.value) && resolver.right) {
+      return resolver.right(unwrapEither(this.value));
     }
 
-    if (IsLeft(this.value) && resolver.left) {
-      return resolver.left(UnwrapEither(this.value));
+    if (isLeft(this.value) && resolver.left) {
+      return resolver.left(unwrapEither(this.value));
     }
 
     return undefined;
   }
 
   public static left<L>(value: L): Either<L, unknown> {
-    return new Either(MakeLeft<L>(value));
+    return new Either(makeLeft<L>(value));
   }
 
   public static right<R>(value: R): Either<unknown, R> {
-    return new Either(MakeRight<R>(value));
+    return new Either(makeRight<R>(value));
   }
 }

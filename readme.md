@@ -1,3 +1,3 @@
 # Xofttion Utils
 
-Utils
+Angular 13 compatible utility library.

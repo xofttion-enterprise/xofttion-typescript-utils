@@ -3,7 +3,7 @@ export const MONTH_MILISECONDS = 2592000000;
 export const WEEK_MILISECONDS = 604800000;
 export const DAY_MILISECONDS = 86400000;
 export const HOUR_MILISECONDS = 3600000;
-export const MINUTE_MILISECONDS = 6000;
+export const MINUTE_MILISECONDS = 60000;
 export const SECOND_MILISECONDS = 1000;
 
 interface ElapsedTime {
@@ -60,16 +60,20 @@ export function getFormatForHumans(milliseconds: number): string {
   }
 
   let description: unknown = null;
+  let index = 0;
 
-  elapsedsTime.forEach((elapsed) => {
+  while (description === null && index < elapsedsTime.length) {
+    const elapsed = elapsedsTime[index];
     const result = Math.floor(value / elapsed.value);
 
-    if (result >= 1 && description === null) {
+    if (result >= 1) {
       const label = result === 1 ? elapsed.single : elapsed.plural;
 
       description = `${prefix} ${result} ${label}`;
     }
-  });
+
+    index++;
+  }
 
   return description as string;
 }
