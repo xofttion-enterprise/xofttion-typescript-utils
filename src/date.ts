@@ -121,32 +121,32 @@ export function dateFactory(year?: number, month?: number, day?: number): Date {
   return date;
 }
 
-export function changeYear(oldDate: Date, year: number): Date {
-  const date = new Date(oldDate.getTime());
+export function changeYear(date: Date, year: number): Date {
+  const newDate = new Date(date.getTime());
 
-  verifyDayYear(date, year);
+  verifyDayYear(newDate, year);
 
-  date.setFullYear(year);
+  newDate.setFullYear(year);
 
-  return date;
+  return newDate;
 }
 
-export function changeMonth(oldDate: Date, month: number): Date {
-  const date = new Date(oldDate.getTime());
+export function changeMonth(date: Date, month: number): Date {
+  const newDate = new Date(date.getTime());
 
-  verifyDayMonth(date, month);
+  verifyDayMonth(newDate, month);
 
-  date.setMonth(month);
+  newDate.setMonth(month);
 
-  return date;
+  return newDate;
 }
 
-export function changeDay(oldDate: Date, day: number): Date {
-  const date = new Date(oldDate.getTime());
+export function changeDay(date: Date, day: number): Date {
+  const newDate = new Date(date.getTime());
 
-  date.setDate(day);
+  newDate.setDate(day);
 
-  return date;
+  return newDate;
 }
 
 function completFormat(value: number, size: number): string {

@@ -1,6 +1,6 @@
 {
   "name": "@xofttion-enterprise/utils",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "author": "Daniel Andrés Castillo Pedroza",
   "license": "MIT",
   "main": "dist/index.js",
@@ -44,7 +44,8 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.0.0",
-    "@types/jest": "^28.1.6",
+    "@types/jest": "^28.1.8",
+    "@types/mocha": "^10.0.0",
     "jest": "^28.1.3",
     "size-limit": "^8.0.0",
     "ts-jest": "^28.0.7",

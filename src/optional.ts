@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { IsDefined } from './control-operator';
+import { isDefined } from './control-operator';
 
 export abstract class Optional<T> {
   protected constructor() {}
@@ -11,11 +11,11 @@ export abstract class Optional<T> {
   public abstract get(): T;
 
   public static build<T>(value?: T | null): Optional<T> {
-    return IsDefined(value) ? this.of(value as T) : this.empty();
+    return isDefined(value) ? this.of(value as T) : this.empty();
   }
 
   public static of<T>(value: T): Optional<T> {
-    if (IsDefined(value)) {
+    if (isDefined(value)) {
       return new PresentOptional<T>(value);
     }
 
