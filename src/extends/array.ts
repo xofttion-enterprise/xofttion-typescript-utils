@@ -22,4 +22,10 @@ Array.prototype.remove = function <T>(index: number): T[] {
   return this.splice(index, 1);
 };
 
+Array.prototype.rakeUp = function <T>(el: T): T[] {
+  const index = this.indexOf(el);
+
+  return index > 0 ? this.splice(index, 1) : this;
+};
+
 export {};
