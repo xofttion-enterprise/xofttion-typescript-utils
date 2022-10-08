@@ -11,7 +11,5 @@ declare global {
     last(): T | null;
 
     remove(index: number): T[];
-
-    destroy(el: T): T[];
   }
 }
