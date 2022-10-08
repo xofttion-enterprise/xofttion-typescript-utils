@@ -23,7 +23,9 @@ Array.prototype.remove = function <T>(index: number): T[] {
 };
 
 Array.prototype.destroy = function <T>(el: T): T[] {
-  return this.remove(this.indexOf(el));
+  const index = this.indexOf(el);
+
+  return index > -1 ? this.splice(index, 1) : this;
 };
 
 export {};

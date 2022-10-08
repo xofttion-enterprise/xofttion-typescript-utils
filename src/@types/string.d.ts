@@ -7,7 +7,5 @@ declare global {
     first(): string;
 
     last(): string;
-
-    like(pattern: string, force?: boolean): boolean;
   }
 }
