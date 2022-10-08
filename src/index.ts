@@ -1,3 +1,4 @@
+export * from './extends/index';
 export * from './control-operator';
 export * from './date';
 export * from './either';
