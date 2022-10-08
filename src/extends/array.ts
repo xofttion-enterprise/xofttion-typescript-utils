@@ -22,8 +22,4 @@ Array.prototype.remove = function <T>(index: number): T[] {
   return this.splice(index, 1);
 };
 
-Array.prototype.destroy = function <T>(el: T): T[] {
-  return this.remove(this.indexOf(el));
-};
-
 export {};
