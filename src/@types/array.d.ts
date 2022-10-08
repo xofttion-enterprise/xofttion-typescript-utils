@@ -11,5 +11,7 @@ declare global {
     last(): T | null;
 
     remove(index: number): T[];
+
+    rakeUp(el: T): T[];
   }
 }
