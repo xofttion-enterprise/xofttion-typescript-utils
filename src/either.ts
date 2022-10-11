@@ -1,4 +1,4 @@
-import { isDefined } from './control-operator';
+import { isDefined } from './utils';
 import { Optional } from './optional';
 
 type Left<L> = {
@@ -53,12 +53,16 @@ const makeRight = <R>(value: R): Right<R> => ({ right: value });
 export class Either<L, R> {
   private constructor(private value: EitherValue<L, R>) {}
 
-  public fold<V>(resolver: EitherResolver<L, R, V>): Optional<V> {
-    return Optional.build(this._unwrap(resolver));
+  public fold<V>(resolver: EitherResolver<L, R, V>): V | undefined {
+    return this._unwrap(resolver);
   }
 
-  public promise<V>(resolver: EitherResolver<L, R, V>): Promise<Optional<V>> {
+  public promise<V>(resolver: EitherResolver<L, R, V>): Promise<V | undefined> {
     return Promise.resolve(this.fold(resolver));
+  }
+
+  public optional<V>(resolver: EitherResolver<L, R, V>): Optional<V> {
+    return Optional.build(this.fold(resolver));
   }
 
   private _unwrap<V>(resolver: EitherResolver<L, R, V>): V | undefined {

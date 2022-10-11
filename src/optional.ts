@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { isDefined } from './control-operator';
+import { isDefined } from './utils';
 
 export abstract class Optional<T> {
   protected constructor() {}

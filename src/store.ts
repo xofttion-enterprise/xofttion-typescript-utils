@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 class State<T> {
@@ -22,6 +22,10 @@ class State<T> {
 
   public observe(): Observable<T> {
     return this.subject.asObservable();
+  }
+
+  public subscribe(subscriber: (_: T) => void): Subscription {
+    return this.observe().subscribe(subscriber);
   }
 
   public reset(): void {
