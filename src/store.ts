@@ -56,6 +56,10 @@ export class Store<T> {
     return this.state.observe().pipe(map((state) => observer(state)));
   }
 
+  public subscribe(subscriber: (_: T) => void): Subscription {
+    return this.state.subscribe(subscriber);
+  }
+
   public reset(): void {
     this.state.reset();
   }

@@ -91,3 +91,15 @@ export function getPendingTime(initial: Date, future = new Date()): PendingTime 
     seconds: Math.floor(difference / SECOND_MILISECONDS)
   };
 }
+
+export function updateDateWithDays(date: Date, days = 1): Date {
+  return updateDateWithTimestamp(date, days * DAY_MILISECONDS);
+}
+
+export function updateDateWithMonths(date: Date, months = 1): Date {
+  return updateDateWithTimestamp(date, months * MONTH_MILISECONDS);
+}
+
+function updateDateWithTimestamp(date: Date, timestamp: number): Date {
+  return new Date(date.getTime() + timestamp);
+}
