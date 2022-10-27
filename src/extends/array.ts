@@ -18,14 +18,10 @@ Array.prototype.last = function <T>(): T | null {
   return this.empty ? null : this[this.length - 1];
 };
 
-Array.prototype.remove = function <T>(index: number): T[] {
+Array.prototype.remove = function <T>(value: number | T): T[] {
+  const index = typeof value === 'number' ? value : this.indexOf(value);
+
   return this.splice(index, 1);
-};
-
-Array.prototype.rakeUp = function <T>(el: T): T[] {
-  const index = this.indexOf(el);
-
-  return index > 0 ? this.splice(index, 1) : this;
 };
 
 export {};
