@@ -1,5 +1,6 @@
 export * from './extends/index';
 export * from './date';
+export * from './date-elapsed';
 export * from './either';
 export * from './optional';
 export * from './queque';
